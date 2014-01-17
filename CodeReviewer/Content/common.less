@@ -1,0 +1,97 @@
+﻿@grey           : #ccc;
+@lightPink      : #e8e0e0;
+@slate          : #e0e8e0;
+@brown-border   : #CC9900;
+@Gainsboro      : #DCDCDC;
+@GoldenRod      : #DAA520;
+@grey           : #dfdfdf;
+@grey           : #CCCCCC;
+@darkGrey       : #74646e;
+@lightGrey      : #C8BFC4;
+@lightSilver    : #ddd8dc;
+@emeraldGreen   : #4D926F;
+@lightBlue      : #ccd5ff;
+@lightSteelBlue : #B0C4DE;
+@off-white      : #FFFFF0;
+@yellowish      : #FFFF00;
+@orange         : #FFCC99;
+@reddish        : #FFCCCC;
+@white          : #FFFFFF;
+@yellow         : #e3f48e;
+@commentYellow  : #FFFFA3;
+@brown          : #A52A2A;
+@maroon         : #800000;
+@siteTileColor  : #c8c8c8;
+@diffGreen      : #D9FFD9;
+@diffGreenInternal: #B7D7B7;
+@baseBlue        : #ECECFF;
+@baseBlueInternal: #C6C6D7;
+@borderRadius   : 5px;
+@edgeWidth      : 20px;
+
+.box-shadow (@x: 0, @y: 0, @blur: 4px, @color: @white) {
+  -webkit-box-shadow: @arguments;
+     -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+}
+.box-shadow-style (@style: inset, @x: 0, @y: 0, @blur: 4px, @color: @white) {
+  -webkit-box-shadow: @arguments;
+     -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+}
+.box-gradient (@startColor: @orange, @endColor: GoldenRod) {
+    background-color: @startColor;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor)); // Safari 4+, Chrome
+    background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Chrome 10+, Safari 5.1+, iOS 5+
+    background-image:    -moz-linear-gradient(top, @startColor, @endColor); // Firefox 3.6-15
+    background-image:      -o-linear-gradient(top, @startColor, @endColor); // Opera 11.10-12.00
+    background-image:         linear-gradient(to bottom, @startColor, @endColor); // Firefox 16+, IE10, Opera 12.50+
+}
+.border-radius (@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+      -ms-border-radius: @radius;
+       -o-border-radius: @radius;
+          border-radius: @radius;
+}
+.boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.rotate-270deg {
+    -webkit-transform: rotate(270deg);
+       -moz-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+         -o-transform: rotate(270deg);
+    -webkit-transform-origin: left top;
+       -moz-transform-origin: left top;
+        -ms-transform-origin: left top;
+         -o-transform-origin: left top;
+    transform: rotate(270deg);
+    transform-origin: left top;
+}
+.highlight {
+    .box-gradient(@yellowish, @commentYellow);
+}
+span.strikeThrough {
+    text-decoration: line-through;
+}
+.noPadding {
+    border-collapse: collapse;
+    margin: 0; //0px 0px 0px 0px;
+    padding: 0; //0px 0px 0px 0px;
+}
+.xyz {
+    background-color: yellow;
+}
+.abc {
+    border: 5px solid red;
+}
+.unusedXyz {
+}

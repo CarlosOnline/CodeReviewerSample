@@ -1,0 +1,80 @@
+﻿@model IEnumerable<CodeReviewer.Models.ChangeListDisplayItem>
+
+@{
+    ViewBag.Title = "ChangeLists";
+}
+
+@section headerMiddleTitle {
+    <span class="headerMiddleTitle">Reviews for @ViewBag.DisplayName</span>
+}
+
+
+<div class="noReviews" style="display: none">
+    <h1>No reviews for @ViewBag.DisplayName</h1>
+</div>
+
+<div class="items" style="display: none">
+    <div class="all">
+        <table class="all">
+            <tr>
+                <th></th>
+                <th>Server</th>
+                <th>Changelist</th>
+                <th>Status</th>
+                <th>Description</th>
+            </tr>
+
+            <tbody data-bind="foreach: items" >
+                <tr class="item" data-bind="click: selected">
+                    <td><a data-bind="attr: { title: title, href: url }">View</a></td>
+                    <td><span data-bind="text: data.server"></span></td>
+                    <td><span data-bind="text: data.CL"></span></td>
+                    <td><span data-bind="text: data.stage"></span></td>
+                    <td><span data-bind="text: data.shortDescription"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <div class="details" data-bind="with: selected">
+        <table>
+            <tr>
+                <td>Server</td>
+                <td><span data-bind="text: data.server"></span></td>
+            </tr>
+            <tr>
+                <td>Changelist</td>
+                <td><span data-bind="text: data.CL"></span></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td><span data-bind="text: data.stage"></span></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><span class="description" data-bind="text: data.description"></span></td>
+            </tr>
+        </table>
+        <input value="View" type="button" data-bind="click: click" />
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        function getInitialUserSettings() {
+            return @Html.Raw(ViewBag.UserSettings);
+        }
+        function getChangeListDisplayItems() {
+            return @Html.Raw(ViewBag.ChangeListDisplayItems);
+        }
+        $(function () {
+            ViewModel.initAllViewModel();
+        });
+    </script>
+}
+
+@section AddToHead
+{
+    @Styles.Render("~/Content/app")
+    @Styles.Render("~/Content/all")
+}

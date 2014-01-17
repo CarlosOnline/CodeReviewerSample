@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        .bodyLeftPad {
+            padding-left: 4em;
+        }
+        .logoLink {
+            background: url(../Images/logo.png) no-repeat top left;
+            display: block;
+            width: 50px;
+            height: 50px;
+            text-indent: -9999px; /* hides the link text */
+        }
+    </style>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/ui-lightness/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @if (IsSectionDefined("AddToHead"))
+    {
+        @RenderSection("AddToHead", required: false)
+    }
+</head>
+<body>
+<header>
+    <div class="header" style="float: left;">
+        <a href='@Url.Action("Index", "Home")'>
+            <img src="~/Images/logo.png" height="50" style="float: left;" alt="CodeReviewer" />
+        </a>
+        <span class="site-title">@Html.ActionLink("CodeReview", "Index", "Home")</span>
+        @RenderSection("headerMiddleTitle", required: false)
+    </div>
+    <div class="float-right headerLogin">
+        <section id="login">
+            @Html.Partial("_LoginPartial")
+        </section>
+    </div>
+</header>
+
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <div id="dialog" title="Error" style="display: none;"></div>
+        @RenderBody()
+    </div>
+
+    <script>
+        function getBaseUrl() {
+            return "@Url.Action("Index", "Home")";
+        }
+        function getUserName() {
+            return "@ViewBag.UserName";
+        }
+        function getReviewerAlias() {
+            return "@ViewBag.ReviewerAlias";
+        }
+        function getDisplayName() {
+            return "@ViewBag.DisplayName";
+        }
+    </script>
+
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.js"></script>
+    <script src="~/Scripts/weak-map.js"></script>
+    <script src="~/Scripts/knockout-2.3.0.debug.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+    <script src="~/Scripts/knockout-es5.js"></script>
+    <script src="~/Scripts/knockout.es5.mapping.js"></script>
+    <script src="~/Scripts/knockout.dirtyFlag.js"></script>
+    <script src="~/Scripts/jquery.qtip.js"></script>
+    <script src="~/Scripts/jquery.color.js"></script>
+    <script src="~/Scripts/jquery.contextMenu.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/shortcut.js"></script>
+    <script src="~/Scripts/jquery.signalR-1.1.2.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+    <!-- include / initialize signalr -->
+    <script src="~/signalr/hubs"></script>
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/app_Scripts")
+</body>
+</html>

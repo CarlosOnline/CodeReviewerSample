@@ -1,0 +1,781 @@
+﻿@import "themes\ui-lightness\jquery-ui.var.less";
+@theme          : "../Content/themes/ui-lightness";
+@import "common.less";
+
+@theme-header-color     : @ui-widget-header-border-color;
+@theme-background-url   : @ui-state-default-widget-content-header-combined-background-url;
+
+@diff-table-num-background-color: @theme-header-color;
+@diff_table-num-background-url: @theme-background-url;
+
+@baseChangedLines_bgColor   : @baseBlue;
+@baseChangedLines_bgColorInternal   : @baseBlueInternal;
+@changedLines_bgColor       : @diffGreen;
+@changedLines_bgColorInternal: @diffGreenInternal;
+@changedLines_fgColor       : blue;
+@addedLines_fgColor         : green;
+@deletedLines_fgColor       : red;
+
+.theme-img(@img) { background-image:url("@{theme}/@{img}"); }
+
+span.strikeThrough {
+    text-decoration: line-through;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child + html .clearfix { zoom: 1; } /* IE7 */
+
+ul {
+    .noPadding;
+}
+span {
+    white-space: pre;
+    display: inline;
+}
+.body {
+    .noPadding;
+}
+.main-content {
+    .noPadding;
+}
+a:hover {
+    background-color: transparent;
+}
+.qtip-closed {
+    background-color: @lightSilver;
+    border-color: darkblue;
+    color: #3F6219;
+}
+.qtip-closed .qtip-titlebar{
+    background-color: @lightSilver;
+}
+
+.qtip-closed .qtip-close .qtip-icon{
+    background-position: -42px 0;
+}
+
+.qtip-CurrentChange {
+    background-color: yellow;
+    border-color: red;
+    color: red;
+    .noPadding;
+    width: auto;
+}
+
+div.DiffTable {
+    overflow: hidden;
+    display: table; // side-by-side tables
+}
+
+.DiffTable table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    .noPadding;
+    margin-top: 0;
+    padding-top: 0;
+    width: 100%; // required for stretching diffTable across screen, and to limit to screen width
+}
+.DiffTable th,tbody,th,tr, tr {
+    .noPadding;
+    overflow: hidden;
+}
+table.DiffTable td {
+    padding-right: 0px;
+    vertical-align: top;
+}
+div.LeftTable, div.RightTable {
+    /* height: auto; useful for short files, but causes problems for long*/
+    height: 550px;
+    overflow: auto;
+    border-collapse: collapse;
+    background-color: white;
+    position: relative; /* relative for qtip to show within viewport/container */
+    /*float:left; -- breaks scroll bar - but helps narrow files */
+}
+div.RightTable {
+    border-left: 3px solid @lightSilver; // border for splitter bar
+}
+div.EdgeTable {
+    overflow: hidden;
+    border-collapse: collapse;
+    background-color: @lightSilver;
+    border-left-width: 0px;
+    width: @edgeWidth;
+    height: 550px;
+}
+table.LeftTable {
+    table-layout: auto; // expand to fit content
+    background-color: white;
+    white-space: nowrap; // no wrap lines
+    overflow: hidden;
+    margin-bottom: 10em; // show lines after last code line
+
+    td {
+        .noPadding;
+        padding-left: 5px;
+        padding-top: 0.08em;        // code line padding
+        padding-bottom: 0.08em;     // code line padding
+    }
+        //background: url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 100% repeat-x;
+        //background: url(../Content/themes/ui-lightness/@ui-widget-content-background-url) 100% repeat-x;
+
+    .Num {
+        text-align: center;
+        min-width: 3.5em;
+        .theme-img(@diff_table-num-background-url);
+    }
+
+    .Code
+    {
+        padding-left: 2px;
+        width: 100%; // extend short rows of text to full width
+    }
+
+    .CommentLine {
+        //.box-gradient(@commentYellow, @white);
+    }
+
+    tbody {
+        float: left;
+        width: 100%;
+        background-color: white;
+        background-repeat: repeat-x;
+    }
+
+    tbody.Seperator {
+        display: none;
+
+        .Code {
+            background-color: lightgray;
+            color: grey;
+        }
+
+        td.Seperator input {
+            border: 1px solid grey;
+            .rounded-corners;
+            .box-gradient(@lightSilver, @baseBlue);
+            padding-left: 2em;
+            padding-right: 2em;
+            margin-left: 2em;
+        }
+    }
+
+    /* Changed lines - deltas */
+    tbody.Changed,
+    tbody.Added,
+    tbody.Deleted
+    {
+        width: 100%;
+        background-color: @baseChangedLines_bgColor;
+        background-repeat: repeat-x;
+        .noPadding;
+    }
+    tbody.CurrentChange {
+        border-top:thin solid black;
+        border-bottom:thin solid black;
+    }
+
+    /* Change lines - deltas - foreground color is here */
+    tbody.Changed
+    {
+        color: @changedLines_fgColor;
+    }
+
+    /* Changed lines - Added lines - no effect */
+    tbody.Added
+    {
+        color: @addedLines_fgColor;
+    }
+
+    /* Changed lines - Deleted lines - no effect */
+    tbody.Deleted
+    {
+        color: @deletedLines_fgColor;
+    }
+
+    pre.Added, pre.Deleted, pre.Changed {
+        background-color: @baseChangedLines_bgColorInternal;
+    }
+}
+
+table.RightTable {
+    table-layout: auto; // expand to fit content
+    background-color: white;
+    white-space: nowrap; // no wrap lines
+    overflow: hidden;
+    margin-bottom: 10em; // show lines after last code line
+
+    td {
+        .noPadding;
+        padding-left: 5px;
+        padding-top: 0.08em;        // code line padding
+        padding-bottom: 0.08em;     // code line padding
+    }
+        //background: url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 100% repeat-x;
+        //background: url(../Content/themes/ui-lightness/@ui-widget-content-background-url) 100% repeat-x;
+
+    .Num {
+        text-align: center;
+        min-width: 3.5em;
+        .theme-img(@diff_table-num-background-url);
+    }
+
+    .Code
+    {
+        padding-left: 2px;
+        width: 100%; // extend short rows of text to full width
+    }
+
+    .CommentLine {
+        //.box-gradient(@commentYellow, @white);
+    }
+
+    tbody {
+        float: left;
+        width: 100%;
+        background-color: white;
+        background-repeat: repeat-x;
+    }
+
+    tbody.Seperator {
+        display: none;
+
+        .Code {
+            background-color: lightgray;
+            color: grey;
+        }
+
+        td.Seperator input {
+            border: 1px solid grey;
+            .rounded-corners;
+            .box-gradient(@lightSilver, @diffGreen);
+            padding-left: 2em;
+            padding-right: 2em;
+            margin-left: 2em;
+        }
+    }
+
+    /* Changed lines - deltas */
+    tbody.Changed,
+    tbody.Added,
+    tbody.Deleted
+    {
+        width: 100%;
+        background-color: @changedLines_bgColor;
+        background-repeat: repeat-x;
+        .noPadding;
+    }
+    tbody.CurrentChange {
+        border-top:thin solid black;
+        border-bottom:thin solid black;
+    }
+
+    /* Change lines - deltas - foreground color is here */
+    tbody.Changed
+    {
+        color: @changedLines_fgColor;
+    }
+
+    /* Changed lines - Added lines - no effect */
+    tbody.Added
+    {
+        color: @addedLines_fgColor;
+    }
+
+    /* Changed lines - Deleted lines - no effect */
+    tbody.Deleted
+    {
+        color: @deletedLines_fgColor;
+    }
+
+    pre.Added, pre.Deleted, pre.Changed {
+        background-color: @baseChangedLines_bgColorInternal;
+    }
+}
+
+.AddComment {
+    background-color: green;
+    background-repeat: repeat-x;
+}
+
+.comment input {
+    .rounded-corners;
+    //.box-gradient;
+    //font-size: 8px;
+    .noPadding;
+    padding: 3px;
+}
+
+.EdgeColumn {
+    width: @edgeWidth;
+}
+.EdgeTable {
+    overflow: hidden;
+    width: @edgeWidth;
+    background-color: @lightSilver;
+    td {
+        width: 20px;
+    }
+}
+div.EdgeIcon {
+    position: absolute;
+    .noPadding;
+    .rounded-corners;
+
+    .Active {
+        background-color: @commentYellow;
+    }
+
+    .Resolved {
+        background-color: lightgreen;
+    }
+
+    .Closed {
+        background-color: lightgrey;
+    }
+
+    .WontFix {
+        background-color: lightblue;
+    }
+}
+.EdgeIcon a {
+    .noPadding;
+}
+
+.PlaceHolder {
+    border-collapse: collapse;
+
+    tr.Changed,
+    tr.Added,
+    tr.Deleted {
+
+        .Code {
+            background-color: @changedLines_bgColor;
+        }
+
+        & .Edge {
+            background-color: @lightSilver;
+        }
+    }
+
+    tr.Unchanged {
+        .Code {
+            background-color: white;
+        }
+    }
+}
+
+.LineNumberCol {
+    width: 3.5em;
+}
+
+.comment {
+    .noPadding;
+
+    & .commentThread {
+        width: 100%;
+        float: left;
+
+        & .commentIcon {
+            visibility: hidden;
+        }
+
+        & textarea {
+            .boxsizingBorder;
+            width: 90%;
+        }
+
+        & .commentText {
+            white-space: pre;
+        }
+
+        & .threadReviewerAlias {
+            float: left;
+            text-decoration:underline;
+        }
+
+        & .threadReviewerAlias:hover {
+            // TODO: implement click to email feature
+            //cursor: pointer;
+        }
+
+        & .threadIcon {
+            //display: inline;
+        }
+
+        & .threadSpanIcon {
+            display: inline;
+            float: left;
+        }
+    }
+
+    & .commentThread:hover .commentIcon {
+       visibility: visible;
+       cursor: pointer;
+    }
+}
+
+.commentIcon {
+    .rounded-corners;
+    cursor: pointer;
+}
+
+#allTabs {
+
+    & div.revisionTab {
+        background-color: @lightSilver; // background under diff tables left & right
+        .noPadding;
+    }
+
+    & .FileDiffs {
+        // container for side by side diff
+        width: 100%;
+    }
+}
+pre {
+    font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+    width:auto;
+    .noPadding;
+    display: inline; // remove line breaks for intra line differences
+}
+
+.grip{
+    width:20px;
+    height:30px;
+    margin-top:-3px;
+    background-image:url('../Images/grip.png');
+    margin-left:-5px;
+    position:relative;
+    z-index:88;
+    cursor:e-resize;
+}
+
+.grip:hover{
+    background-position-x:-20px;
+}
+
+.dragging .grip{
+    background-position-x:-40px;
+}
+div, section {
+    .noPadding;
+}
+
+#reviewPane {
+    .noPadding;
+    margin-top: 0.4em;
+}
+
+.bodyLeftPad {
+    //padding-left: 4em;
+}
+
+table.outerContent {
+    .noPadding;
+    tr,td {
+        .noPadding;
+        vertical-align: top;
+    }
+}
+
+
+#diffPageContent {
+    .noPadding;
+    float: right;
+    margin-right: 0.3em;
+    padding-left: 0.25em;
+}
+
+
+#leftPaneLabel {
+    position: absolute;
+    left: -2px;
+    top: 10em;
+    right: 100%;
+    width: 4em;
+    margin-right: 0.2em;
+    display: block; // required for rotated text
+    z-index: 999999;
+    font-size: 180%;
+    text-align: center;
+    vertical-align:middle;
+    .box-shadow(2px, 3px, 4px, grey);
+    .rotate-270deg;
+    //.box-gradient(@theme-header-color, lighten(@theme-header-color, 30%));
+    .theme-img(@diff_table-num-background-url);
+    .rounded-corners(8px);
+
+    a:link, a:visited, a:active {
+        text-decoration: none;
+        color: Black;
+    }
+    a:hover {
+        background-color: transparent;
+        color: @emeraldGreen;
+    }
+}
+
+td.leftPane {
+    width: 200px;
+}
+td.reviewPane {
+    width: 80%;
+}
+#leftPane {
+    display: block; // required for inside resizable?
+    font-size: 1em;
+    font-weight: normal;
+    vertical-align: top;
+    border-collapse: collapse;
+    table-layout: fixed;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 0.5em;
+    //.box-gradient(@grey, @lightSilver);
+    //.box-gradient(lighten(@theme-header-color,40%), lighten(@theme-header-color, 50%));
+    .theme-img(@diff_table-num-background-url);
+    .rounded-corners;
+    border: 1px solid grey;
+    padding-top: 0.4em;
+    margin-top: 0.4em;
+    padding-bottom: 1em;
+    margin-left: 0.4em;
+    margin-right: 0.2em;
+    tr {
+        width: 100%;
+    }
+
+    table,tr,td,tbody {
+        .noPadding;
+    }
+
+    div.filesToc {
+        font-weight: normal;
+        .noPadding;
+        padding-left: 0.5em;
+        padding-bottom: 2px;
+        margin-bottom: 3px;
+
+        .icon {
+        }
+
+        .file {
+            .Active {
+                //color: @slate;
+            }
+
+            .Resolved {
+                //color: lighten(lightgreen, 20);
+            }
+
+            .Closed {
+                //color: lighten(@lightSilver, 20);
+            }
+
+            .WontFix {
+                //color: @lightSteelBlue;
+            }
+        }
+        .file:hover {
+            cursor: pointer;
+            color: @maroon;
+            font-weight:bold;
+        }
+        .selected {
+            font-weight:bold;
+        }
+        .selected:hover {
+            cursor: default;
+        }
+    }
+
+    div.settings {
+        .noPadding;
+        padding-left: 0.5em;
+
+        & .userSettings {
+            padding-left: 0.25em;
+            padding-bottom: 0.25em;
+            & p {
+                .noPadding;
+            }
+            & span {
+                .noPadding;
+            }
+            & span:hover,input:hover {
+                cursor: pointer;
+            }
+            & input {
+                .noPadding;
+            }
+        }
+
+        & .diffSettings {
+            padding-left: 1em;
+            padding-bottom: 0.5em;
+            & p {
+                .noPadding;
+            }
+        }
+
+        & .dynamicSettings {
+            padding-left: 1em;
+            padding-bottom: 0.5em;
+
+            & p {
+                .noPadding;
+            }
+        }
+    }
+
+    div.reviewers {
+        font-weight: normal;
+        padding-left: 0.5em;
+        margin-bottom: 3px;
+
+        & .icon {
+            .noPadding;
+        }
+
+        & .commentIcon {
+            display: inline-block;
+        }
+
+        & div.addReviewer {
+            display: inline-block;
+        }
+
+        & div.addReviewer:hover {
+            cursor: pointer;
+        }
+
+        tr.deleteIcon {
+           visibility: hidden;
+        }
+
+        & .deleteIcon:hover {
+           visibility: visible;
+           cursor: pointer;
+        }
+
+
+        & .name {
+            & .NotLookedAtYet {
+                color: inherit;
+            }
+            & .NotLookedAtYet:hover {
+                cursor: pointer;
+            }
+
+            & .Looking {
+                color: green;
+            }
+            & .Looking:hover {
+                cursor: pointer;
+            }
+
+            & .SignedOff {
+                color: black;
+            }
+            & .SignedOff:hover {
+                cursor: pointer;
+            }
+
+            & .SignedOffWithComments {
+                color: @maroon;
+            }
+            & .SignedOffWithComments:hover {
+                cursor: pointer;
+            }
+
+            & .WaitingOnAuthor {
+                color: red;
+            }
+            & .WaitingOnAuthor:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    div.ping {
+        padding-left: 0.5em;
+
+        & .stage {
+            float: left;
+        }
+
+        input.pingButton {
+            float: right;
+            vertical-align: top;
+            .border-radius(2px);
+            .rounded-corners;
+            display: block;
+            cursor: pointer
+        }
+
+        select.stageList {
+            .noPadding;
+            display: inline-block;
+            padding: 4px 3px 5px 5px;
+            margin-right: 10px;
+            outline: none;
+            color: @darkGrey;
+            border: 1px solid @lightGrey;
+            border-radius: 4px;
+            .box-shadow-style(inset, 1px, 1px, 2px, @lightSilver);
+        }
+    }
+}
+
+div.icon {
+    .rounded-corners;
+    cursor: pointer;
+}
+
+.title {
+    float: left;
+}
+
+.changeListHeader {
+    .noPadding;
+    float: left;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contactLinks {
+    .noPadding;
+    float: right;
+    text-align: center;
+    vertical-align: central;
+}
+
+select.fileList {
+    .noPadding;
+    display: inline-block;
+    padding: 4px 3px 5px 5px;
+    margin: 0.4em;
+    outline: none;
+    color: @darkGrey;
+    border: 1px solid @lightGrey;
+    border-radius: 4px;
+    .box-shadow-style(inset 1px 1px 2px @lightSilver);
+}
+div.navigation {
+    float: right;
+}
+span.navigation {
+    float: left;
+    width: 16px;
+    height: 16px;
+}

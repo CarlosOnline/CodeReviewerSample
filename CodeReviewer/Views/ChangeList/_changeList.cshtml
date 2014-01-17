@@ -1,0 +1,49 @@
+﻿<div id="dialog" title="Error" style="display: none;"></div>
+<table class="outerContent">
+    <tr>
+        <td id="leftPaneCell" valign="top">
+            <div id="leftPaneLabel" style="display: none;">
+                <a id="leftPanelAnchor" class="handle" href="#" data-bind="click: leftPane.show">Review</a>
+                <br style="clear: both;" />
+            </div>
+            <div id="leftPane" class="leftPane {title:'Review'}" style="display: none;">
+                <div>
+                    <a href='#' data-bind="click: leftPane.close" title="hide" style="float: right" valign="top">
+                        <span class='commentIcon ui-icon ui-icon-closethick' style='display: inline; float: right'></span>
+                    </a>
+                    @RenderPage("_changeFiles.cshtml")
+                    <!--
+                    <hr />
+                    @*RenderPage("_settings.cshtml")*@
+                    -->
+                    <hr />
+                    @RenderPage("_reviewers.cshtml")
+                    <hr />
+                    @RenderPage("_addReviewers.cshtml")
+                    <hr />
+                    @RenderPage("_ping.cshtml")
+                </div>
+            </div>
+        </td>
+        <td>
+            <div id="diffPageContent">
+                <div id="reviewPane" class="reviewPane">
+                    <div id="tabs" class="tabsRow" style="display: none">
+                        <ul data-bind="foreach: revisions">
+                            <li><a data-bind="attr: { href: url, title: title }"><span data-bind='    text: title'></span></a></li>
+                        </ul>
+                        <div id="allTabs" data-bind="foreach: revisions, viewModelBind: id">
+                            <div data-bind="attr: { id: tabId }" class="revisionTab">
+                                <div class="FileDiffs">
+                                    <div data-bind="html: data.diffHtml, revisionBind: tabId"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+@RenderPage("_diffTemplate.cshtml")

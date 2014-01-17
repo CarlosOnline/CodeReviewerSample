@@ -1,0 +1,19 @@
+﻿<div class="filesToc">
+    <b>Files</b>
+    <table class="filesToc">
+        <tbody data-bind="foreach: changeList.changeFiles">
+            <tr data-bind="attr: {id: id}">
+                <td>
+                    <div class="icon">
+                        <span data-bind="css: icon.classes, click: icon.click, attr: {title: icon.title}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="file">
+                        <span data-bind="text: file.value, css: file.classes, click: file.click, attr: {title: file.title}"></span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

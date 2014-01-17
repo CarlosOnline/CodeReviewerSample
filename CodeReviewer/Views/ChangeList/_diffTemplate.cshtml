@@ -1,0 +1,63 @@
+<div id="templateHolderContainer" style="display: none;">
+    <div id="templateHolder">
+    </div>
+</div>
+<script id="commentTemplate" type="text/template">
+    <div class='comment' data-bind="attr: { id: id }, commentBind: id, style: { display: display.comment }">
+        <span class="commentIcon ui-icon" title="add comment" data-bind="click: addNewThread, css: status.icon.classes" style='display: inline; float: left;'></span>
+        <span class='commentIcon ui-icon ui-icon-closethick' style='display: inline; float: right' data-bind="click: close, style: { display: display.hideGroup }" title="hide"></span>
+        <br style="clear: both;" />
+        <div data-bind='foreach: threads'>
+            <div class="commentThread" data-bind="style: { display: display.thread }">
+                <b><span class="threadReviewerAlias" data-bind="text: data.reviewerAlias, style: { display: display.userName }" /></b>
+                <span class='threadSpanIcon commentIcon ui-icon ui-icon-arrowthickstop-1-e' title="hide" data-bind="click: close, style: { display: display.icon.hide }"></span>
+                <span class='threadSpanIcon commentIcon ui-icon ui-icon-trash' title="delete" data-bind="click: remove, style: { display: display.icon.remove }"></span>
+                <span class='threadSpanIcon commentIcon ui-icon ui-icon-pencil' title="edit" data-bind="click: edit, style: { display: display.icon.edit }"></span>
+                <br style="clear: both;" />
+                <div>
+                    <div data-bind="style: { display: display.viewer }">
+                        <pre class="commentText" data-bind='text: data.commentText, click: edit'></pre>
+                    </div>
+                    <div data-bind="style: { display: display.editor }">
+                        <textarea style='resize: none; padding: 0; margin: 0;' data-bind="value: data.commentText, valueUpdate: 'afterkeydown'" rows='3'></textarea><br />
+                        <input class="addComment" type='button' value='Add' title="add comment" data-bind="click: submit.click, enable: submit.enable" />
+                        <a href='#' class="cancelComment" title="Cancel" data-bind="click: submit.cancel">cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br style="clear: both;" />
+        <span class='commentIcon ui-icon ui-icon-comment' title="add comment" style='display: inline; float: left' data-bind="click: addNewThread, style: { display: display.addThread }"></span>
+        <select class="commentStatus" data-bind="options: status.select.list, value: status.select.value, style: { display: display.status }"></select>
+    </div>
+</script>
+
+<script id="commentEdgeTemplate" type="text/template">
+    <div class="EdgeIcon">
+        <div class="EdgeIcon" data-bind="display: display.edge, commentBind: id, css: color">
+            <a href='#'><span class="commentIcon ui-icon" data-bind="css: classes, click: click" style='display: inline; float: left;' title="Expand Comment">X</span></a>
+        </div>
+    </div>
+</script>
+
+<script id="placeHolderTemplate" type="text/template">
+    <tr class='PlaceHolder' data-bind='commentBind: id, style: { height: height }, css: rowColor'>
+        <td class="Num">&nbsp;</td>
+        <td class="Code">
+            <div data-bind='attr: { id: id }'>
+                <!--
+                <p>Id: <span data-bind='text: id'></span></p>
+                <p>Height: <span data-bind='text: height'></span></p>
+                <p>RowHeight: <span data-bind='text: partner.height()'></span></p>
+                -->
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script id="uniqueLineTemplate" type="text/template">
+    <tr class='extraRow' data-bind='commentBind: id, style: { height: height }, css: rowColor'>
+        <td class="Num">&nbsp;</td>
+        <td class="Code">&nbsp;</td>
+    </tr>
+</script>

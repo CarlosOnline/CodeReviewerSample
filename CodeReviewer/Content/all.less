@@ -1,0 +1,96 @@
+﻿@import "themes\ui-lightness\jquery-ui.var.less";
+@theme          : "../Content/themes/ui-lightness";
+@import "common.less";
+
+#body {
+    padding-top: 0.5em;
+}
+th,td {
+    padding-right: 1em;
+    margin-right: 1em;
+}
+table {
+    width: 99%;
+}
+tr {
+    border-collapse: collapse;
+}
+td {
+    vertical-align: top;
+}
+/*
+tr:hover > td:nth-child(6) {
+    display: inline;
+    vertical-align: top;
+}
+tr:hover > td:nth-child(5) {
+    display: none;
+}
+*/
+tr:hover {
+    background-color: @diffGreen;
+    cursor: pointer;
+}
+td.shortDescription {
+    display: block;
+    width: auto;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 0;
+    margin-right: 0;
+}
+div.noReviews {
+    height: 45%;
+    width: 90%;
+    display: block;
+    overflow: auto;
+    .rounded-corners;
+    border: 2px solid grey;
+    background-color: @slate;
+    padding: 5em;
+    padding-top: 4em;
+    margin: 0.5em;
+}
+div.all {
+    height: 45%;
+    width: 95%;
+    display: block;
+    overflow: auto;
+    .rounded-corners;
+    border: 2px solid grey;
+    background-color: @slate;
+    //padding: 1em;
+    margin: 0.5em;
+    margin-left: 0.5em;
+    padding-left: 0.25em;
+}
+td.description {
+    width: 200em;
+    vertical-align: top;
+    display: none;
+    white-space: pre;
+    padding-right: 0;
+    margin-right: 0;
+}
+div.details {
+    height: 45%;
+    width: 95%;
+    display: block;
+    overflow: auto;
+    .rounded-corners;
+    border: 2px solid grey;
+    background-color: @slate;
+    padding: 1em;
+    margin: 0.5em;
+    margin-left: 0.5em;
+    padding-left: 0.25em;
+}
+div.details tr:hover {
+    background-color: transparent;
+}
+span.description {
+    white-space: pre;
+}

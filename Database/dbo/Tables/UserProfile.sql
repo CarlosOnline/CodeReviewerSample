@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[UserProfile]
+(
+	[Id] INT NOT NULL IDENTITY ,
+	[UserName] NVARCHAR(500) NULL,
+	[Email] NVARCHAR(500) NOT NULL,
+	[Password] NVARCHAR(MAX) NULL,
+	PRIMARY KEY ([Id]),
+	UNIQUE NONCLUSTERED ([Email] ASC),
+	UNIQUE NONCLUSTERED ([UserName] ASC),
+)

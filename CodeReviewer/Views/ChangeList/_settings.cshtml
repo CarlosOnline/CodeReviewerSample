@@ -1,0 +1,39 @@
+﻿<div id="settings" class="settings" data-bind="with: settings">
+    <b>Diff Settings</b>
+    <div class="userSettings">
+        <input type="checkbox" title="Hide unchanged lines" data-bind="checked: settings.user.hideUnchanged" />
+        <span title="Hide unchanged lines" data-bind="click: user.hideUnchanged.click" >Hide unchanged lines</span>
+    </div>
+<!--
+    <b>Diff Settings</b>
+    <div class="diffSettings">
+        <p title="Ignore White Space in diff">
+            <input type="checkbox" data-bind="checked: settings.user.diff.ignoreWhiteSpace" />
+            Ignore White Space
+        </p>
+        <p title="Normalize files before diffing">
+            <input type="checkbox" data-bind="checked: settings.user.diff.preDiff" />
+            Normalize Files for Diffing
+        </p>
+        <p title="Show changes in line">
+            <input type="checkbox" data-bind="checked: settings.user.diff.intraLineDiff" />
+            Intra-line diffs
+        </p>
+    </div>
+    <b>Live Update Settings</b>
+    <div class="dynamicSettings">
+        <p title="Show changes to comments">
+            <input type="checkbox" data-bind="checked: settings.user.dynamic.comments" />
+            Dynamically update comments
+        </p>
+        <p title="Show reviewer changes">
+            Show reviewer changes
+            <input type="checkbox" data-bind="checked: settings.user.dynamic.reviewers" />
+        </p>
+        <p title="Show change list changes">
+            Show change list changes
+            <input type="checkbox" data-bind="checked: settings.user.diff.changeLists" />
+        </p>
+    </div>
+-->
+</div>

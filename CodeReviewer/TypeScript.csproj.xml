@@ -1,0 +1,95 @@
+  <ItemGroup>
+    <TypeScriptCompile Include="App_Scripts\resources.ts" />
+    <TypeScriptCompile Include="App_Scripts\changeList.ts" />
+    <Content Include="App_Scripts\resources.js">
+      <DependentUpon>resources.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\ajaxFunctions.ts" />
+    <Content Include="App_Scripts\ajaxFunctions.js">
+      <DependentUpon>ajaxFunctions.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\app.ts" />
+    <Content Include="App_Scripts\app.js">
+      <DependentUpon>app.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\changeFile.ts" />
+    <Content Include="App_Scripts\changeFile.js">
+      <DependentUpon>changeFile.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\comment.ts" />
+    <Content Include="App_Scripts\comment.js">
+      <DependentUpon>comment.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\commentThread.ts" />
+    <Content Include="App_Scripts\commentThread.js">
+      <DependentUpon>commentThread.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\diffViewModel.ts" />
+    <Content Include="App_Scripts\diffViewModel.js">
+      <DependentUpon>diffViewModel.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\dto.ts" />
+    <Content Include="App_Scripts\dto.js">
+      <DependentUpon>dto.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\edge.ts" />
+    <Content Include="App_Scripts\edge.js">
+      <DependentUpon>edge.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\globals.ts" />
+    <Content Include="App_Scripts\globals.js">
+      <DependentUpon>globals.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\ui.ts" />
+    <Content Include="App_Scripts\ui.js">
+      <DependentUpon>ui.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\leftPane.ts" />
+    <Content Include="App_Scripts\leftPane.js">
+      <DependentUpon>leftPane.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\Initialize.ts" />
+    <Content Include="App_Scripts\Initialize.js">
+      <DependentUpon>Initialize.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\Models.ts" />
+    <Content Include="App_Scripts\Models.js">
+      <DependentUpon>Models.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\navigation.ts" />
+    <Content Include="App_Scripts\navigation.js">
+      <DependentUpon>navigation.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\ping.ts" />
+    <Content Include="App_Scripts\ping.js">
+      <DependentUpon>ping.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\placeHolders.ts" />
+    <Content Include="App_Scripts\placeHolders.js">
+      <DependentUpon>placeHolders.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\reviewer.ts" />
+    <Content Include="App_Scripts\reviewer.js">
+      <DependentUpon>reviewer.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\revision.ts" />
+    <Content Include="App_Scripts\revision.js">
+      <DependentUpon>revision.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\settings.ts" />
+    <Content Include="App_Scripts\settings.js">
+      <DependentUpon>settings.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\stage.ts" />
+    <Content Include="App_Scripts\stage.js">
+      <DependentUpon>stage.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\subscriptions.ts" />
+    <Content Include="App_Scripts\subscriptions.js">
+      <DependentUpon>subscriptions.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App_Scripts\Utility.ts" />
+    <Content Include="App_Scripts\Utility.js">
+      <DependentUpon>Utility.ts</DependentUpon>
+    </Content>
+  </ItemGroup>

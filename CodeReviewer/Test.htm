@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JS plumb test</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="./Scripts/jquery.jsPlumb-1.4.1-all.js"></script>
+
+    <style>
+        .window { 
+            background-color: #EEEEEF;
+            border: 1px solid #346789;
+            border-radius: 0.5em;
+            box-shadow: 2px 2px 19px #AAAAAA;
+            color: black;
+            height: 5em;
+            position: absolute;
+            width: 5em;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+
+        jsPlumb.ready(function () {
+
+            // three ways to do this - an id, a list of ids, or a selector (note the two different types of selectors shown here...anything that is valid jquery will work of course)
+
+            //jsPlumb.draggable("container0");
+            //jsPlumb.draggable(["container0", "container1"]);
+            jsPlumb.draggable($(".window"));
+
+            //perform operation only after DOM is loaded
+            var e0 = jsPlumb.addEndpoint("container0"),
+                e1 = jsPlumb.addEndpoint("container1");
+
+
+
+            jsPlumb.connect({ source: e0, target: e1 });
+
+
+        });
+
+
+    </script>
+
+</head>
+ <body >
+     <div class="window" style="left: 20px" id="container0">
+     </div>
+
+    <div class="window"  style="left: 200px" id="container1">
+    </div>
+</body>
+</html>

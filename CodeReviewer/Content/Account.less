@@ -1,0 +1,20 @@
+﻿@import "themes\ui-lightness\jquery-ui.var.less";
+@theme          : "../Content/themes/ui-lightness";
+@theme-header-color     : @ui-widget-header-border-color;
+@theme-background-url   : @ui-state-default-widget-content-header-combined-background-url;
+
+.theme-img(@img) { background-image: url("@{theme}/@{img}"); }
+.theme-background-url(@img) { background: url("@{theme}/@{img}"); }
+
+body {
+}
+
+#loginForm {
+    float: left;
+    //width: 400px;
+}
+
+.social {
+    float: right;
+    display: none;
+}

@@ -1,0 +1,61 @@
+﻿@using System.Globalization
+@model CodeReviewer.Models.ChangeListDto
+@{
+    ViewBag.Title = "ChangeList " + @Model.CL;
+}
+
+@section headerMiddleTitle {
+    <span class="headerMiddleTitle">ChangeList @Model.CL</span>
+    <select id="fileList" class="fileList" data-bind="options: select.changeFiles.list, value: select.changeFiles.value, style: { display: displayFilesSelect }"></select>
+    @RenderPage("../ChangeList/_navigation.cshtml")
+}
+
+@RenderPage("_changeList.cshtml")
+
+@section scripts
+{
+    <script type="text/javascript">
+        function getInitialUserSettings() {
+            return @Html.Raw(ViewBag.UserSettings);
+        }
+        function getInitialChangeListSettings() {
+            return @Html.Raw(ViewBag.ChangeListSettings);
+        }
+        function getInitialChangeList() {
+            return @Html.Raw(ViewBag.ChangeList);
+        }
+        $(function () {
+            ViewModel.initDiffViewModel();
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/diff")
+}
+
+@section AddToHead
+{
+    <link href="~/Content/Diff.css" rel="stylesheet">
+    <style>
+        /* supposed to be in diff.less but doesnt work there */
+        .comment a:hover {
+            background-color: transparent;
+        }
+
+        body div.qtip div.content {
+            padding: 0;
+            margin: 0;
+            height: auto;
+            min-height: inherit;
+            width: auto;
+            min-width: inherit;
+        }
+
+        .ping {
+            vertical-align: middle;
+        }
+
+        .Test {
+            background-color: lightgray;
+        }
+    </style>
+}

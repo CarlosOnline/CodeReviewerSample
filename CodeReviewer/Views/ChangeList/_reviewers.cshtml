@@ -1,0 +1,35 @@
+﻿<div class="reviewers">
+    <b>Reviewers</b>
+    <table class="reviewers">
+        <tbody data-bind="foreach: reviewers">
+            <tr data-bind="if: display, attr: { id: id }">
+                <td>
+                    <div class="icon">
+                        <span data-bind="css: icon.classes, click: icon.click, attr: { title: icon.title }"></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="name">
+                        <span data-bind="text: name.value, css: name.classes, click: name.click, attr: { title: name.title }"></span>
+                    </div>
+                </td>
+                <td>
+                    <span class="deleteIcon ui-icon ui-icon-trash" data-bind="click: deleteReviewer.click, style: { display: deleteReviewer.display }" title="Remove Reviewer"></span>
+                </td>
+            </tr>
+            <tr data-bind="if: display">
+                <td></td>
+                <td>
+                    <div class="status">
+                        <div data-bind="ifnot: status.select.display">
+                            <span data-bind="text: status.value, attr: { title: status.title }, css: status.classes, click: status.click"></span>
+                        </div>
+                        <div data-bind="if: status.select.display">
+                            <select class="statusList" data-bind="options: status.select.list, value: status.select.value"></select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

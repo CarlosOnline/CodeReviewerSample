@@ -1,0 +1,112 @@
+﻿@model CodeReviewer.Models.SubmitReview
+
+@{
+    ViewBag.Title = "Submit Review";
+}
+
+@section headerMiddleTitle {
+    <span class="headerMiddleTitle">Submit ChangeList For Review</span>
+}
+
+<div class="noReviews" style="display: none">
+    <h1>No pending reviews for @ViewBag.DisplayName</h1>
+</div>
+
+<div class="items" style="display: none">
+    <h3>Select Pending changeList to submit for review</h3>
+    <div class="all">
+        <table class="all">
+            <tr>
+                <th>Changelist</th>
+                <th>Description</th>
+            </tr>
+
+            <tbody data-bind="foreach: items" >
+                <tr class="item" data-bind="click: selected, attr: { title: data.description }">
+                    <td><span data-bind="text: data.CL, attr: { title: data.description }"></span></td>
+                    <td><span data-bind="text: data.shortDescription, attr: { title: data.description }"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h2>Submit Review</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ChangeList</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CL, "Change List")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CL)
+            @Html.ValidationMessageFor(model => model.CL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Reviewers)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Reviewers)
+            @Html.ValidationMessageFor(model => model.Reviewers)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OptionalReviewers)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OptionalReviewers)
+            @Html.ValidationMessageFor(model => model.OptionalReviewers)
+        </div>
+
+        <p>
+            <input type="submit" value="Submit" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section AddToHead
+{
+    @Styles.Render("~/Content/site")
+    @Styles.Render("~/Content/all")
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function getInitialUserSettings() {
+            return @Html.Raw(ViewBag.UserSettings);
+        }
+        function getChangeListDisplayItems() {
+            return @Html.Raw(ViewBag.ChangeListDisplayItems);
+        }
+        $(function () {
+            ViewModel.initSubmitChangeListsViewModel();
+        });
+    </script>
+}

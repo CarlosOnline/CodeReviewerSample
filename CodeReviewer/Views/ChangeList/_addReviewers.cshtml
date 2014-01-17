@@ -1,0 +1,26 @@
+﻿<div id="addReviewer" class="reviewers">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div data-bind="style: { display: reviewer.add.icon.display }">
+                        <span id="addReviewerIcon" class="commentIcon ui-icon ui-icon-plus" data-bind="click: reviewer.add.icon.click" title="Add Reviewer"></span>
+                    </div>
+                </td>
+                <td>
+                    <div id="addReviewerForm" data-bind="style: { display: reviewer.add.display }">
+                        <form data-bind="submit: reviewer.add.submit.click">
+                            <input id="addDisplay" type="email" style="resize: none; padding: 0; margin: 0;" data-bind="value: reviewer.data.reviewerAlias, valueUpdate: 'afterkeydown'" placeholder="reviewer alias" />
+                            <br />
+                            <button class="addReviewer" type='submit' data-bind="click: reviewer.add.submit.click, enable: reviewer.add.submit.enabled">Add</button>
+                            <a href='#' class="cancelReviewer" title="Cancel" data-bind="click: reviewer.add.cancel.click">cancel</a>
+                        </form>
+                    </div>
+                    <div data-bind="style: { display: reviewer.add.icon.display }">
+                        <div class="addReviewer" data-bind="click: reviewer.add.icon.click">Add Reviewer</div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

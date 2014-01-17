@@ -1,0 +1,24 @@
+﻿<div class="ping">
+    <b>Review Status</b>
+    <table class="ping">
+        <tbody>
+            <tr>
+                <td class="ping" style="vertical-align: middle;">
+                    <div class="stage">
+                        <div data-bind="ifnot: stage.select.display()">
+                            <span data-bind="text: stage.value, attr: { title: stage.title }, css: stage.classes, click: stage.click"></span>
+                        </div>
+                        <div data-bind="if: stage.select.display()">
+                            <select class="stageList" data-bind="options: stage.select.list, value: stage.select.value"></select>
+                        </div>
+                    </div>
+                </td>
+                <td class="ping" style="vertical-align: middle;" data-bind="if: ping.display">
+                    <div class="pingButton">
+                        <input id="pingButton" class="pingButton" type="button" value="Ping!" title="Ping reviewers" onclick="onPingClick();" data-bind="    onclick: ping.click" />
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
